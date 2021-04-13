@@ -215,13 +215,9 @@ class Cronnit {
       }
     }
 
-    $limit = @$account->dailyLimit ?? 5;
+    $limit = 99999;
     $editBonus = $isEdit ? 1 : 0; // bug 26
     $when = $this->convertTime($data['whendate'], $data['whentime'], $data['whenzone']);
-
-    if ($this->countDailyPosts($account, $when) >= $limit + $editBonus) {
-      return "You have exceeded your daily posting limit of $limit posts";
-    }
   }
 
 
