@@ -117,12 +117,9 @@ if (isset($_POST['submit'])) {
       $this->redirect('import');
     }
 
-    $limit = @$account->dailyLimit ?? 5;
+    $limit = 99999;
 
-    if ($this->countDailyPosts($account, $post->when) >= $limit) {
-      $_SESSION['importerror'] = "Row #$rowNumber exceeds daily post limit of $limit";
-      $this->redirect('import');
-    }
+
 
     if (empty($post->id)) {
       // Safeguard against duplicate CSV imports.
