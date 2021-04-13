@@ -36,13 +36,9 @@ foreach ($pending as $post) {
     continue;
   }
 
-  $limit = @$post->account->dailyLimit ?? 5;
+  $limit = 9999;
 
-  if ($cronnit->countDailyPosts($post->account, $post->when) > $limit) {
-    $post->error = "Post exceeded daily limit of $limit";
-    R::store($post);
-    continue;
-  }
+
 
   try {
     $accessToken = $cronnit->getAccessToken($post->account);
